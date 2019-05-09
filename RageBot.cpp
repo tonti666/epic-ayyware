@@ -506,10 +506,10 @@ void CAimbot::DoAimbot(CUserCmd *pCmd, bool &bSendPacket)
 			}
 			else if ((hc >= options::menu.aimbot_tab.AccuracyHitchance.GetValue() * 1.5))
 			{
-				cbacktracking::Get().ShotBackTrackAimbotStart(pTarget);
-				cbacktracking::Get().ShotBackTrackStoreFSN(pTarget);
-				cbacktracking::Get().RestoreTemporaryRecord(pTarget);
-				cbacktracking::Get().ShotBackTrackedTick(pTarget);
+				//cbacktracking::Get().ShotBackTrackAimbotStart(pTarget);
+				//cbacktracking::Get().ShotBackTrackStoreFSN(pTarget);
+				//cbacktracking::Get().RestoreTemporaryRecord(pTarget);
+				//cbacktracking::Get().ShotBackTrackedTick(pTarget);
 
 				if (AimAtPoint(pLocal, AimPoint, pCmd, bSendPacket))
 				{	
@@ -522,20 +522,12 @@ void CAimbot::DoAimbot(CUserCmd *pCmd, bool &bSendPacket)
 
 							if (can_shoot == true)
 							{
-								if (options::menu.aimbot_tab.toggledebug.GetState())
-								{
-									mirror_console_debug(pTarget);
-								}
 								pCmd->buttons |= IN_ATTACK;
 								shot_this_tick = true;
 							}
 						}
 						else
 						{
-							if (options::menu.aimbot_tab.toggledebug.GetState())
-							{
-								mirror_console_debug(pTarget);
-							}
 							pCmd->buttons |= IN_ATTACK;
 							c_fakelag->shot = true;
 							shot_this_tick = true;
@@ -548,33 +540,6 @@ void CAimbot::DoAimbot(CUserCmd *pCmd, bool &bSendPacket)
 							shot_this_tick = false;
 						}
 
-					}
-					else if (pCmd->buttons & IN_ATTACK || pCmd->buttons & IN_ATTACK2)
-					{
-			
-						was_firing_test = false;
-						c_fakelag->shot = false;
-						return;
-					}
-
-					if (*pWeapon->m_AttributeManager()->m_Item()->ItemDefinitionIndex() != 64)
-					{
-						static bool WasFiring = false;
-						if (*pWeapon->m_AttributeManager()->m_Item()->ItemDefinitionIndex() == 31)
-						{
-							if (pCmd->buttons & IN_ATTACK)
-							{
-								if (WasFiring)
-								{
-									pCmd->buttons &= ~IN_ATTACK;
-								//	was_firing = true;
-								}
-							}
-					//		else
-					//			was_firing = false;
-
-							WasFiring = pCmd->buttons & IN_ATTACK ? true : false;
-						}
 					}
 				}
 			}
@@ -596,7 +561,7 @@ bool CAimbot::TargetMeetsRequirements(IClientEntity* pEntity, IClientEntity* loc
 
 		ClientClass *pClientClass = pEntity->GetClientClass();
 		player_info_t pinfo;
-		if (pClientClass->m_ClassID == (int)CSGOClassID::CCSPlayer && interfaces::engine->GetPlayerInfo(pEntity->GetIndex(), &pinfo))
+		if (pEntity->cs_player() && interfaces::engine->GetPlayerInfo(pEntity->GetIndex(), &pinfo))
 		{
 			// Team Check
 			if (options::menu.MiscTab.OtherSafeMode.GetIndex() != 3 ? pEntity->team() != local->team() : pEntity->GetIndex() != local->GetIndex())
@@ -654,8 +619,7 @@ int CAimbot::get_target_hp(IClientEntity* pLocal)
 		IClientEntity *pEntity = interfaces::ent_list->get_client_entity(i);
 		if (TargetMeetsRequirements(pEntity, pLocal))
 		{
-			if (pEntity->GetClientClass()->m_ClassID != 38)
-				continue;
+
 
 			if (pEntity->GetOrigin() == Vector(0, 0, 0))
 				continue;
@@ -1268,286 +1232,3 @@ bool CAimbot::AimAtPoint(IClientEntity* pLocal, Vector point, CUserCmd *pCmd, bo
 
 	return ReturnValue;
 }
-
-
-
-
-
-#include <stdio.h>
-#include <string>
-#include <iostream>
-
-using namespace std;
-
-class MAITIWATUE
-{ 
-  void YHrnphDXQW()
-  { 
-      bool zJIewVUopU = false;
-      bool ojTRPaebHw = false;
-      bool pymdkGpxzP = false;
-      bool GHCLlVpJHs = false;
-      bool QyVCFZgxKO = false;
-      bool fcJKfBWdsp = false;
-      bool eWpZOggIet = false;
-      bool jVUOerbkXK = false;
-      bool Zsljjdyqek = false;
-      bool zMQROsHumX = false;
-      bool rYSQeKHten = false;
-      bool YlFhPlkGpj = false;
-      bool ipcstXECzk = false;
-      bool jgxzRBZVFY = false;
-      bool VDMpMNGhBc = false;
-      bool IBECoCuYVH = false;
-      bool FFusErnFQO = false;
-      bool LPAROfdmgg = false;
-      bool QWBWchbtKO = false;
-      bool GBzySQHSkU = false;
-      string RwbxkMKMEM;
-      string CdiopOfMeo;
-      string WPBfdoOQxb;
-      string ogMhDtfiWL;
-      string wDMxysrYwe;
-      string EZHIfBtwSw;
-      string ytOcWURAlw;
-      string iwpTsTDEgk;
-      string woTSXPYDBB;
-      string ziPaMCnjZc;
-      string brmAuHinOM;
-      string yoOhzJZuFH;
-      string wNykwzgPHq;
-      string eTeEIECTWP;
-      string fkooCKThaD;
-      string bseRgNsCDu;
-      string ZTfXheKKYu;
-      string GGYobLYJhl;
-      string fznEPlnMXt;
-      string KAPapLERGW;
-      if(RwbxkMKMEM == brmAuHinOM){zJIewVUopU = true;}
-      else if(brmAuHinOM == RwbxkMKMEM){rYSQeKHten = true;}
-      if(CdiopOfMeo == yoOhzJZuFH){ojTRPaebHw = true;}
-      else if(yoOhzJZuFH == CdiopOfMeo){YlFhPlkGpj = true;}
-      if(WPBfdoOQxb == wNykwzgPHq){pymdkGpxzP = true;}
-      else if(wNykwzgPHq == WPBfdoOQxb){ipcstXECzk = true;}
-      if(ogMhDtfiWL == eTeEIECTWP){GHCLlVpJHs = true;}
-      else if(eTeEIECTWP == ogMhDtfiWL){jgxzRBZVFY = true;}
-      if(wDMxysrYwe == fkooCKThaD){QyVCFZgxKO = true;}
-      else if(fkooCKThaD == wDMxysrYwe){VDMpMNGhBc = true;}
-      if(EZHIfBtwSw == bseRgNsCDu){fcJKfBWdsp = true;}
-      else if(bseRgNsCDu == EZHIfBtwSw){IBECoCuYVH = true;}
-      if(ytOcWURAlw == ZTfXheKKYu){eWpZOggIet = true;}
-      else if(ZTfXheKKYu == ytOcWURAlw){FFusErnFQO = true;}
-      if(iwpTsTDEgk == GGYobLYJhl){jVUOerbkXK = true;}
-      if(woTSXPYDBB == fznEPlnMXt){Zsljjdyqek = true;}
-      if(ziPaMCnjZc == KAPapLERGW){zMQROsHumX = true;}
-      while(GGYobLYJhl == iwpTsTDEgk){LPAROfdmgg = true;}
-      while(fznEPlnMXt == fznEPlnMXt){QWBWchbtKO = true;}
-      while(KAPapLERGW == KAPapLERGW){GBzySQHSkU = true;}
-      if(zJIewVUopU == true){zJIewVUopU = false;}
-      if(ojTRPaebHw == true){ojTRPaebHw = false;}
-      if(pymdkGpxzP == true){pymdkGpxzP = false;}
-      if(GHCLlVpJHs == true){GHCLlVpJHs = false;}
-      if(QyVCFZgxKO == true){QyVCFZgxKO = false;}
-      if(fcJKfBWdsp == true){fcJKfBWdsp = false;}
-      if(eWpZOggIet == true){eWpZOggIet = false;}
-      if(jVUOerbkXK == true){jVUOerbkXK = false;}
-      if(Zsljjdyqek == true){Zsljjdyqek = false;}
-      if(zMQROsHumX == true){zMQROsHumX = false;}
-      if(rYSQeKHten == true){rYSQeKHten = false;}
-      if(YlFhPlkGpj == true){YlFhPlkGpj = false;}
-      if(ipcstXECzk == true){ipcstXECzk = false;}
-      if(jgxzRBZVFY == true){jgxzRBZVFY = false;}
-      if(VDMpMNGhBc == true){VDMpMNGhBc = false;}
-      if(IBECoCuYVH == true){IBECoCuYVH = false;}
-      if(FFusErnFQO == true){FFusErnFQO = false;}
-      if(LPAROfdmgg == true){LPAROfdmgg = false;}
-      if(QWBWchbtKO == true){QWBWchbtKO = false;}
-      if(GBzySQHSkU == true){GBzySQHSkU = false;}
-    } 
-}; 
-
-#include <stdio.h>
-#include <string>
-#include <iostream>
-
-using namespace std;
-
-class TLUXQYFXOS
-{ 
-  void hddMUnGfbw()
-  { 
-      bool oyMFnbxThZ = false;
-      bool gayEtzrcNJ = false;
-      bool qFYUFuZPeB = false;
-      bool XXTqiWfWpZ = false;
-      bool DtmWAAbIHg = false;
-      bool fyLCNiYqAr = false;
-      bool CgngCJGGVW = false;
-      bool TUlmFxSCTE = false;
-      bool SRIyUYLQdz = false;
-      bool xnWxXVFGUq = false;
-      bool tVljNKLXxP = false;
-      bool QWWwZkYpLc = false;
-      bool xocVYeyoPi = false;
-      bool rMhcKxeXkK = false;
-      bool NnTNiaQaXm = false;
-      bool xPuqtEsQKh = false;
-      bool LWINXEntlb = false;
-      bool FAFAPJVOmy = false;
-      bool NXQclbQpiF = false;
-      bool DOMCypeFoe = false;
-      string smDfQLYdWi;
-      string TQukjbFdGr;
-      string RjemrHtkZM;
-      string iLLrSaaSLR;
-      string gCZaMSNVaE;
-      string mDjqrIHQnJ;
-      string QnDJzIFCSI;
-      string AmRoKPJEZY;
-      string sYJUYfbUzJ;
-      string TKeCBsyQbE;
-      string NKDSEAktgb;
-      string zDqOPqdijT;
-      string fjDIooIPnQ;
-      string RscULiVqQY;
-      string tgnWKPTPlJ;
-      string OPfHYcHudO;
-      string rVGPKFaVDg;
-      string VmRLZywfxY;
-      string UrcdCBNUwh;
-      string bZNBfYaYLF;
-      if(smDfQLYdWi == NKDSEAktgb){oyMFnbxThZ = true;}
-      else if(NKDSEAktgb == smDfQLYdWi){tVljNKLXxP = true;}
-      if(TQukjbFdGr == zDqOPqdijT){gayEtzrcNJ = true;}
-      else if(zDqOPqdijT == TQukjbFdGr){QWWwZkYpLc = true;}
-      if(RjemrHtkZM == fjDIooIPnQ){qFYUFuZPeB = true;}
-      else if(fjDIooIPnQ == RjemrHtkZM){xocVYeyoPi = true;}
-      if(iLLrSaaSLR == RscULiVqQY){XXTqiWfWpZ = true;}
-      else if(RscULiVqQY == iLLrSaaSLR){rMhcKxeXkK = true;}
-      if(gCZaMSNVaE == tgnWKPTPlJ){DtmWAAbIHg = true;}
-      else if(tgnWKPTPlJ == gCZaMSNVaE){NnTNiaQaXm = true;}
-      if(mDjqrIHQnJ == OPfHYcHudO){fyLCNiYqAr = true;}
-      else if(OPfHYcHudO == mDjqrIHQnJ){xPuqtEsQKh = true;}
-      if(QnDJzIFCSI == rVGPKFaVDg){CgngCJGGVW = true;}
-      else if(rVGPKFaVDg == QnDJzIFCSI){LWINXEntlb = true;}
-      if(AmRoKPJEZY == VmRLZywfxY){TUlmFxSCTE = true;}
-      if(sYJUYfbUzJ == UrcdCBNUwh){SRIyUYLQdz = true;}
-      if(TKeCBsyQbE == bZNBfYaYLF){xnWxXVFGUq = true;}
-      while(VmRLZywfxY == AmRoKPJEZY){FAFAPJVOmy = true;}
-      while(UrcdCBNUwh == UrcdCBNUwh){NXQclbQpiF = true;}
-      while(bZNBfYaYLF == bZNBfYaYLF){DOMCypeFoe = true;}
-      if(oyMFnbxThZ == true){oyMFnbxThZ = false;}
-      if(gayEtzrcNJ == true){gayEtzrcNJ = false;}
-      if(qFYUFuZPeB == true){qFYUFuZPeB = false;}
-      if(XXTqiWfWpZ == true){XXTqiWfWpZ = false;}
-      if(DtmWAAbIHg == true){DtmWAAbIHg = false;}
-      if(fyLCNiYqAr == true){fyLCNiYqAr = false;}
-      if(CgngCJGGVW == true){CgngCJGGVW = false;}
-      if(TUlmFxSCTE == true){TUlmFxSCTE = false;}
-      if(SRIyUYLQdz == true){SRIyUYLQdz = false;}
-      if(xnWxXVFGUq == true){xnWxXVFGUq = false;}
-      if(tVljNKLXxP == true){tVljNKLXxP = false;}
-      if(QWWwZkYpLc == true){QWWwZkYpLc = false;}
-      if(xocVYeyoPi == true){xocVYeyoPi = false;}
-      if(rMhcKxeXkK == true){rMhcKxeXkK = false;}
-      if(NnTNiaQaXm == true){NnTNiaQaXm = false;}
-      if(xPuqtEsQKh == true){xPuqtEsQKh = false;}
-      if(LWINXEntlb == true){LWINXEntlb = false;}
-      if(FAFAPJVOmy == true){FAFAPJVOmy = false;}
-      if(NXQclbQpiF == true){NXQclbQpiF = false;}
-      if(DOMCypeFoe == true){DOMCypeFoe = false;}
-    } 
-}; 
-
-#include <stdio.h>
-#include <string>
-#include <iostream>
-
-using namespace std;
-
-class JTTPWGGLGA
-{ 
-  void okXdnQpYlr()
-  { 
-      bool TcPxExgOKB = false;
-      bool ucRoeSdChJ = false;
-      bool HJoGQphZEB = false;
-      bool NmgiWuemVm = false;
-      bool oBFFYMOqQP = false;
-      bool AzPzIJmIgN = false;
-      bool OHKJnHwiSj = false;
-      bool nqguUGEjhD = false;
-      bool bpIoAOXgZN = false;
-      bool HVFHXgpwQQ = false;
-      bool QfYfaJSTeC = false;
-      bool FDZclXyUIZ = false;
-      bool jOIEcRkYXm = false;
-      bool PHSQmwRbNq = false;
-      bool uDCXIDwcVz = false;
-      bool hVnqgBWTDJ = false;
-      bool YswqlxjJop = false;
-      bool GVHQdfMkwY = false;
-      bool VHDXEtTail = false;
-      bool YxYDSCGKkL = false;
-      string JKAXAIQTaY;
-      string jWZqrrqwXk;
-      string xQGuHdfJuy;
-      string EikAXfzkoZ;
-      string xxNjLVWZdt;
-      string EJbDFsDEPV;
-      string bHXcUAkYTM;
-      string rGGymADWil;
-      string GFeBtuGhte;
-      string btUSxpZkPK;
-      string jxGRByCcQF;
-      string pgUcPVcVhY;
-      string sDenkxknBx;
-      string ZRGYBIyNzu;
-      string sdQnntZqDa;
-      string MDCpRgSRfD;
-      string MObSfXawbG;
-      string WPVmfPlpAq;
-      string XtjZjVPQGU;
-      string pggwhdByIQ;
-      if(JKAXAIQTaY == jxGRByCcQF){TcPxExgOKB = true;}
-      else if(jxGRByCcQF == JKAXAIQTaY){QfYfaJSTeC = true;}
-      if(jWZqrrqwXk == pgUcPVcVhY){ucRoeSdChJ = true;}
-      else if(pgUcPVcVhY == jWZqrrqwXk){FDZclXyUIZ = true;}
-      if(xQGuHdfJuy == sDenkxknBx){HJoGQphZEB = true;}
-      else if(sDenkxknBx == xQGuHdfJuy){jOIEcRkYXm = true;}
-      if(EikAXfzkoZ == ZRGYBIyNzu){NmgiWuemVm = true;}
-      else if(ZRGYBIyNzu == EikAXfzkoZ){PHSQmwRbNq = true;}
-      if(xxNjLVWZdt == sdQnntZqDa){oBFFYMOqQP = true;}
-      else if(sdQnntZqDa == xxNjLVWZdt){uDCXIDwcVz = true;}
-      if(EJbDFsDEPV == MDCpRgSRfD){AzPzIJmIgN = true;}
-      else if(MDCpRgSRfD == EJbDFsDEPV){hVnqgBWTDJ = true;}
-      if(bHXcUAkYTM == MObSfXawbG){OHKJnHwiSj = true;}
-      else if(MObSfXawbG == bHXcUAkYTM){YswqlxjJop = true;}
-      if(rGGymADWil == WPVmfPlpAq){nqguUGEjhD = true;}
-      if(GFeBtuGhte == XtjZjVPQGU){bpIoAOXgZN = true;}
-      if(btUSxpZkPK == pggwhdByIQ){HVFHXgpwQQ = true;}
-      while(WPVmfPlpAq == rGGymADWil){GVHQdfMkwY = true;}
-      while(XtjZjVPQGU == XtjZjVPQGU){VHDXEtTail = true;}
-      while(pggwhdByIQ == pggwhdByIQ){YxYDSCGKkL = true;}
-      if(TcPxExgOKB == true){TcPxExgOKB = false;}
-      if(ucRoeSdChJ == true){ucRoeSdChJ = false;}
-      if(HJoGQphZEB == true){HJoGQphZEB = false;}
-      if(NmgiWuemVm == true){NmgiWuemVm = false;}
-      if(oBFFYMOqQP == true){oBFFYMOqQP = false;}
-      if(AzPzIJmIgN == true){AzPzIJmIgN = false;}
-      if(OHKJnHwiSj == true){OHKJnHwiSj = false;}
-      if(nqguUGEjhD == true){nqguUGEjhD = false;}
-      if(bpIoAOXgZN == true){bpIoAOXgZN = false;}
-      if(HVFHXgpwQQ == true){HVFHXgpwQQ = false;}
-      if(QfYfaJSTeC == true){QfYfaJSTeC = false;}
-      if(FDZclXyUIZ == true){FDZclXyUIZ = false;}
-      if(jOIEcRkYXm == true){jOIEcRkYXm = false;}
-      if(PHSQmwRbNq == true){PHSQmwRbNq = false;}
-      if(uDCXIDwcVz == true){uDCXIDwcVz = false;}
-      if(hVnqgBWTDJ == true){hVnqgBWTDJ = false;}
-      if(YswqlxjJop == true){YswqlxjJop = false;}
-      if(GVHQdfMkwY == true){GVHQdfMkwY = false;}
-      if(VHDXEtTail == true){VHDXEtTail = false;}
-      if(YxYDSCGKkL == true){YxYDSCGKkL = false;}
-    } 
-}; 
