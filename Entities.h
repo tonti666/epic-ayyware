@@ -1810,6 +1810,10 @@ public:
 	{
 		return GetClientClass()->m_ClassID == (int)CSGOClassID::CCSPlayer;
 	}
+	bool cs_player()
+	{
+		return call_vfunc<bool(__thiscall*)(IClientEntity*)>(this, 155)(this);
+	}
 	bool IsMoving()
 	{
 		return GetVelocity().Length2D() > 0.1f;
